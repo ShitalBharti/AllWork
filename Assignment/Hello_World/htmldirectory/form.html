@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+        body {
+            background-color:antiquewhite;
+           }
+        h2 {
+            color:blueviolet;
+            text-align:center
+           }
+        p {
+            color:darkgreen;
+            font-size:25px;
+            text-align:center
+           }
+        input {
+            width:10%;
+            padding:12px 20px;
+            margin: 8px 0;
+            border: 2px solid red;
+            border-radius: 4px;
+           }
+        label {
+            font-size:20px;
+            display: inline-block;
+            width: 100px;
+            text-align: left;
+            color: chocolate;
+           }
+        input[type=submit] {
+            background-color: blueviolet;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: center;
+            font-size:20px
+           }
+        #div1 {
+            text-align:center
+           }
+        input[type=date] {
+            font-family: monospace;
+           }
+    </style>
+</head>
+<body>
+<h2>Dance Class Registeration</h2>
+<p>Welcome to Hip-Hop dance classes.
+    Kindly complete your registeration process to join us!</p>
+<div id="div1">
+    <form name="registerform" method="post" action="/submitform" enctype="multipart/form-data">
+        <div>
+            <b> <label for="FirstName">First name:</label></b>
+            <input name="FirstName" placeholder="Enter First-Name here..." type="text" required="true"/></div>
+        <div>
+            <b><label for="LastName">Last name:</label></b>
+            <input name="LastName" placeholder="Enter Last-Name here..." type="text"/></div>
+        <div>
+            <b><label for="Email-Id">Email-ID:</label></b>
+            <input name="Email-Id" placeholder="Enter Email-Id here..." type="email"/></div>
+        <div>
+            <b><label for="Mobile-No">Mobile-No:</label></b>
+            <input name="Mobile-No" placeholder="Enter Mobile-No here..." type="text"/></div>
+        <div>
+            <b><label for="Date">Date:</label></b>
+            <input name="Date" type="date"/></div>
+        <div>
+            <b><label for="Location">Location:</label></b>
+            <input name="Location" placeholder="Enter Location here..." type="textarea"/></div>
+        <div>
+        <div>
+            <b><label for="uploadfile">UploadFile:</label></b>
+            <input name="uploadfile" type="file"/></div>
+        <div>
+            <input type="submit" value="Signup"/></div>
+    </form>
+</div>
+</body>
+</html>
