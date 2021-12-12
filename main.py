@@ -1,16 +1,28 @@
-# This is a sample Python script.
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+@app.get('/home')
+async def create_name():
+    return {'Hello': 'Shital'}
+
+class Item(BaseModel):
+    name : str
+    number : str
+
+@app.post('/home/post')
+async def post(item: Item):
+    new_name = item.name
+    new_no = item.name
+    return {'name':new_name,'no':new_no}
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
+"""
+If more than one application runs on same port Error: Only one usage of socket address
+to change port no:
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    uvicorn.run(app, port = 5000)
+"""
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
