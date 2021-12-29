@@ -1,0 +1,9 @@
+ERROR:root:There is an error in program
+CRITICAL:root:There is a problem in the design
+ERROR:root:There is an error in program
+CRITICAL:root:There is a problem in the design
+ERROR:root:division by zero
+Traceback (most recent call last):
+  File "C:/Users/Admin/PycharmProjects/pythonProject/MCS_EID_Shital_Corepython/_14_Exception_Handling/_12_Logging_Exceptions.py", line 62, in <module>
+    c = a/b
+ZeroDivisionError: division by zero
