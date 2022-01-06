@@ -1,0 +1,15 @@
+Example:
+
+Website is consist of three things:
+
+1. Layout (It consist of Html, css, javascript etc.)
+2. Data   (It comes from database)
+3. Business Logic (To connect this two things and performs operations we need business logic)
+
+We need to separate these three things while developing web application, In Django we
+called it as 'MVT'
+
+1. Model refers to Data
+2. Template refers to HTML, CSS etc.
+3. User sends request to Django/Web-Applications through URL, URL then call to view.
+    View will then interact with Model and template and send response.
