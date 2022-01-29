@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Read by Id</title>
+</head>
+<body>
+<form method="post" action="/readid">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>Task Id:</td>
+            <td><textarea class="form-control"  rows="1" name="taskid"></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="submit" class="btn btn-primary" value="Read">Read</button></td>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>TaskName</th>
+            <th>TaskDescription</th>
+        </tr>
+        {% for task in TasksData %}
+        <tr>
+            <td>Hello</td>
+        </tr>
+        <tr>
+            <td>{{ task.Id }}</td>
+            <td>{{ task.TaskName }}</td>
+            <td>{{ task.TaskDescription}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+
+</body>
+</html>

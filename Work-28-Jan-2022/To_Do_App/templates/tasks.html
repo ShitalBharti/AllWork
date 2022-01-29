@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+{% include 'messages.html' %}
+<form method="post" action="/display">
+    {% csrf_token %}
+    <input type="submit" value="Create" name="create"> <br><br>
+    <input type="submit" value="Delete" name="delete"><br><br>
+    <input type="submit" value="Update" name="update"><br><br>
+    <input type="submit" value="Read by id" name="readid"><br><br>
+    <input type="submit" value="Read All" name="readall"><br><br>
+</form>
+</body>
+</html>
