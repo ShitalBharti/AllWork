@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Read All</title>
+</head>
+<body>
+    <form method="post" action="/read">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><button type="submit" class="btn btn-primary" value="ReadAll" name="show">Show Data</button></td>
+                <td><button type="submit" class="btn btn-primary" value="Read By Id" name="read">Read By Id</button></td>
+                <td><button type="submit" class="btn btn-primary" value="back" name="back">Back</button></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>TaskName</th>
+                <th>TaskDescription</th>
+            </tr>
+            {% for task in TasksData %}
+            <tr>
+                <td>{{ task.Id }}</td>
+                <td>{{ task.TaskName }}</td>
+                <td>{{ task.TaskDescription}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+
+</body>
+</html>

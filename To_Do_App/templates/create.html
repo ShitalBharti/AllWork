@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CreateTask</title>
+</head>
+<body>
+    <form method="post" action="/create">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Task Name:</td>
+                <td><textarea class="form-control"  rows="2" name="tname"></textarea></td>
+            </tr>
+            <tr>
+                <td>Task Description:</td>
+                <td><textarea class="form-control"  rows="3" name="tdesc"></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit" class="btn btn-primary" value="Create" name="create">Create</button></td>
+                <td><button type="submit" class="btn btn-primary" value="Create" name="back">Back</button></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

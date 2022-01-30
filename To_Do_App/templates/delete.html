@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DeleteTask</title>
+</head>
+<body>
+    <form method="post" action="/delete">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Task Id:</td>
+                <td><textarea class="form-control"  rows="1" name="taskid"></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit" class="btn btn-primary" value="Delete by id" name="delete">Delete</button></td>
+                <td><button type="submit" class="btn btn-primary" value="Delete All" name="deleteall">Delete All</button></td>
+                <td><button type="submit" class="btn btn-primary" value="Delete" name="back">Back</button></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
