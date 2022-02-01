@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+<form action="/signup" method="post">
+    {% csrf_token %}
+    <label>UserName:</label>
+    <input type="text" id="username" name="username" placeholder="Create a Username (only letters and numbers)" required>
+    <br>
+    <label>First Name:</label>
+    <input type="text" id="fname" name="fname" placeholder="Enter First Name" required>
+    <br>
+    <label>Last Name:</label>
+    <input type="text" id="lname" name="lname" placeholder="Enter Last Name" required>
+    <br>
+    <label>Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter Email Address" required>
+    <br>
+    <label>Password:</label>
+    <input type="password" id="password" name="password" placeholder="Create a password" required>
+    <br>
+    <label>Confirm Password:</label>
+    <input type="password" id="cpsw" name="cpsw" placeholder="Confirm Password" required>
+    <br>
+    <button type="submit" class="btn btn-warning btn-lg" value="Create" name="SignUp"><a href="/signup">SignUp</a></button>
+
+</form>
+</body>
+</html>
