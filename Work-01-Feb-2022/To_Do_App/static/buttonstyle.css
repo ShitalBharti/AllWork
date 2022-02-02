@@ -1,0 +1,17 @@
+
+.form-container {
+  position: absolute;
+  top: 15vh;
+}
+
+.form-control{
+   opacity: 0.5;
+}
+
+.label-control{
+    font-family:verdana;
+    font-size:150%;
+}
+
+
+
