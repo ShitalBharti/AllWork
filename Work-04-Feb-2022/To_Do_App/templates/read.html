@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+{% include 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Read All</title>
+</head>
+<body>
+<div class="row h-100 justify-content-center align-items-center">
+{% include 'messages.html' %}
+    <form method="post" action="/read" class="form-container">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><button type="submit" class="btn btn-warning btn-lg" value="ReadAll" name="show">Show Data</button></td>
+                <td><button type="submit" class="btn btn-warning btn-lg" value="Read By Id" name="read">Read By Id</button></td>
+                <td><button type="submit" class="btn btn-warning btn-lg" value="back" name="back">Back</button></td>
+            </tr>
+        </table>
+        {% if TasksData %}
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">TaskName</th>
+                    <th scope="col">TaskDescription</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in TasksData %}
+                <tr>
+                    <th scope="row">{{ task.Id }}</th>
+                    <td>{{ task.TaskName }}</td>
+                    <td>{{ task.TaskDescription}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </form>
+</div>
+</body>
+</html>
