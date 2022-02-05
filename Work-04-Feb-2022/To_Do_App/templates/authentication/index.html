@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'divstyle.css' %}"/>
+
+</head>
+<body>
+    <div class="float-container bg-image"
+     style="background-image: url('{% static 'Welcome.jpg' %}');
+            height: 100vh; background-repeat: no-repeat; background-size: 100%,100%;">
+        <div class="float-child text-center">
+            <form method="post">
+                {% csrf_token %}
+                <h1>Welcome to ToDo App!!</h1>
+                <p>It will help you to create, delete, read, update all tasks and many more to manage your schedule!! Manage work by managing time!!</p>
+                <a href="signin" class="btn btn-info btn-lg" role="button">Login</a>
+            </form>
+        </div>
+        <div class="float-child">
+            <form method="post" action="/signup/">
+            {% csrf_token %}
+                <table>
+                        <tr>
+                            <td></td>
+                            <td>
+                                {% if messages %}
+                                {% for message in messages %}
+                                <div class="container-fluid p-0">
+                                  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    </button>
+                                    {{ message }}
+                                  </div>
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="label-control">UserName:</label></td>
+                            <td><input type="text" id="username" class="form-control" name="username" placeholder="Create a Username (only letters and numbers)"
+                                       required></td>
+                        </tr>
+                        <tr>
+                            <td><label class="label-control">First Name:</label></td>
+                            <td><input type="text" id="fname" class="form-control" name="fname" placeholder="Enter First Name" required></td>
+                        </tr>
+                        <tr>
+                            <td><label class="label-control">Last Name:</label></td>
+                            <td><input type="text" id="lname" class="form-control" name="lname" placeholder="Enter Last Name" required></td>
+                        </tr>
+                        <tr>
+                            <td><label class="label-control">Email:</label></td>
+                            <td><input type="email" id="email" class="form-control" name="email" placeholder="Enter Email Address" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="label-control">Password:</label></td>
+                            <td><input type="password" id="pass1" class="form-control" name="pass1" placeholder="Create a password" required>
+                                <span id="text1">{{ error }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="label-control">Confirm Password:</label></td>
+                            <td><input type="password" id="pass2" class="form-control" name="pass2" placeholder="Confirm Password" required>
+                                <span id="text2">{{ errornotmatch }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><button type="submit" class="btn btn-info btn-lg"  name="SignUp">Sign Up</button></td>
+                        </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+{% include 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UpdateTask</title>
+</head>
+<body>
+<div class="row h-100 justify-content-center align-items-center">
+{% include 'messages.html' %}
+<form method="post" class="form-container">
+    {% csrf_token %}
+    <table>
+         <tr>
+             <td><label class="label-control">Task Id:</label></td>
+            <td><textarea class="form-control"  rows="1" name="taskid"></textarea></td>
+        </tr>
+        <tr>
+            <td><label class="label-control">Task Name:</label></td>
+            <td><textarea class="form-control"  rows="2" name="tname"></textarea></td>
+        </tr>
+        <tr>
+            <td><label class="label-control">Task Description:</label></td>
+            <td><textarea class="form-control"  rows="3" name="tdesc"></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="submit" class="btn btn-warning btn-lg" value="Update" name="update">Update</button></td>
+            <td><button type="submit" class="btn btn-warning btn-lg" value="Back" name="back">Back</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

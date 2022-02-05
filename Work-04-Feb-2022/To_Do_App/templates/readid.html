@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+{% include 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Read by Id</title>
+</head>
+<body>
+<div class="row h-100 justify-content-center align-items-center">
+{% include 'messages.html' %}
+<form method="post" action="/tasks/read/readid" class="form-container">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td><label class="label-control">Task Id:</label></td>
+            <td><textarea class="form-control"  rows="1" name="taskid"></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="submit" class="btn btn-warning btn-lg" value="Read" name="read">Read</button></td>
+            <td><button type="submit" class="btn btn-warning btn-lg" value="Back" name="back">Back</button></td>
+        </tr>
+    </table>
+    <br><br>
+    {% if task %}
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">TaskName</th>
+                <th scope="col">TaskDescription</th>
+            </tr>
+        </thead>
+        <tr>
+            <th scope="row">{{ task.Id }}</th>
+            <td>{{ task.TaskName }}</td>
+            <td>{{ task.TaskDescription}}</td>
+        </tr>
+    </table>
+    {% endif %}
+</form>
+
+</body>
+</html>
