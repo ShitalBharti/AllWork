@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Update Result</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'buttonstyle.css' %}"/>
+</head>
+<body>
+<div class="d-flex h-100 justify-content-center align-items-center child">
+    {% include 'messages.html' %}
+        <form method="post" class="form-container">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td><label class="label-control">Student Id:</label></td>
+                    <td><input type="text" class="form-control" name="sid"></td>
+                </tr>
+                <tr>
+                    <td><label class="label-control">Maths:</label></td>
+                    <td><input type="number" step="0.01" class="form-control" name="maths"></td>
+                </tr>
+                <tr>
+                    <td><label class="label-control">History:</label></td>
+                    <td><input type="number" step="0.01" class="form-control" name="history"></td>
+                </tr>
+                <tr>
+                    <td><label class="label-control">Geography:</label></td>
+                    <td><input type="number" step="0.01" class="form-control" name="geography"></td>
+                </tr>
+                <tr>
+                    <td><label class="label-control">English:</label></td>
+                    <td><input type="number" step="0.01" class="form-control" name="english"></td>
+                </tr>
+                <tr>
+                    <td><label class="label-control">Civics:</label></td>
+                    <td><input type="number" step="0.01" class="form-control" name="civics"></td>
+                </tr>
+                <tr>
+                    <td><label class="label-control">Economics:</label></td>
+                    <td><input type="number" step="0.01" class="form-control" name="economics"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button type="submit" class="btn btn-warning btn-lg" value="Update" name="update">Update</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+</body>
+</html>

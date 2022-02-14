@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Record</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'buttonstyle.css' %}"/>
+</head>
+<body>
+<div class="row h-100 justify-content-center align-items-center child">
+{% include 'messages.html' %}
+    <form method="post" class="form-container">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><label class="label-control">Student Id:</label></td>
+                <td><input type="text" class="form-control" name="sid"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit" class="btn btn-warning btn-lg" value="Delete" name="delete">Delete</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

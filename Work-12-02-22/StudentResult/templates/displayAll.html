@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>ReadAll</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'buttonstyle.css' %}"/>
+</head>
+<body>
+<div class="row h-100 justify-content-center align-items-center">
+{% include 'messages.html' %}
+    <form method="post" class="form-container">
+        {% csrf_token %}
+         <table>
+            <tr>
+                <td><button type="submit" class="btn btn-warning btn-lg" value="Read" name="show">Display Result</button></td>
+            </tr>
+        </table>
+        {% if ResultData %}
+        <table class="table table-sm child">
+            <thead>
+                <tr>
+                    <th scope="col">Student ID</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Maths</th>
+                    <th scope="col">History</th>
+                    <th scope="col">Geography</th>
+                    <th scope="col">English</th>
+                    <th scope="col">Civics</th>
+                    <th scope="col">Economics</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Chance Given</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in ResultData %}
+                <tr>
+                    <th scope="row">{{ result.Id }}</th>
+                    <td>{{ result.StudentName }}</td>
+                    <td>{{ result.Maths }}</td>
+                    <td>{{ result.History }}</td>
+                    <td>{{ result.Geography }}</td>
+                    <td>{{ result.English }}</td>
+                    <td>{{ result.Civics }}</td>
+                    <td>{{ result.Economics }}</td>
+                    <td>{{ result.Status }}</td>
+                    <td>{{ result.Chance_Given }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </form>
+</div>
+</body>
+</html>
