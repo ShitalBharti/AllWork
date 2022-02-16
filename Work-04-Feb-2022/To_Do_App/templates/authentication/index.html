@@ -14,11 +14,11 @@
      style="background-image: url('{% static 'Welcome.jpg' %}');
             height: 100vh; background-repeat: no-repeat; background-size: 100%,100%;">
         <div class="float-child text-center">
-            <form method="post">
-                {% csrf_token %}
-                <h1>Welcome to ToDo App!!</h1>
-                <p>It will help you to create, delete, read, update all tasks and many more to manage your schedule!! Manage work by managing time!!</p>
-                <a href="signin" class="btn btn-info btn-lg" role="button">Login</a>
+            <form method="post" action="/signin/">
+            {% csrf_token %}
+            <h1>Welcome to ToDo App!!</h1>
+            <p>It will help you to create, delete, read, update all tasks and many more to manage your schedule!! Manage work by managing time!!</p>
+            <button type="submit" class="btn btn-info btn-lg"  name="SignIn">Login</button>
             </form>
         </div>
         <div class="float-child">

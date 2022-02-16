@@ -1,18 +1,21 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.views.decorators.cache import cache_control
-from django.contrib.auth import authenticate
 from TaskManager.models import Tasks, Signup
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 import mysql.connector
 from operator import itemgetter
 
 # Create your views here.
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def home(request):
     return render(request, 'authentication/index.html')
 
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+def sessions(request):
+        if request.POST.get('SignIn'):
+            return render(request, 'authentication/signin.html')
+        if request.POST.get('SignOut'):
+            return render(request, 'authentication/signup.html')
+
 def signup(request):
     if request.method == "POST":
         username = request.POST.get('username')  # OR username = request.POST['username']
@@ -64,60 +67,90 @@ def signup(request):
             messages.success(request, "Registeration successfull!")
             return redirect('signin')
 
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+
 def signin(request):
-    if request.user.is_authenticate:
-        con1 = mysql.connector.connect(host="localhost", user="root", password="root", database="pythonDB")
-        cursor1 = con1.cursor()
-        con2 = mysql.connector.connect(host="localhost", user="root", password="root", database="pythonDB")
-        cursor2 = con2.cursor()
-        sqlcommand1 = "select Username from taskmanager_signup"
-        sqlcommand2 = "select Password from taskmanager_signup"
 
-        cursor1.execute(sqlcommand1)
-        cursor2.execute(sqlcommand2)
+    con1 = mysql.connector.connect(host="localhost", user="root", password="root", database="pythonDB")
+    cursor1 = con1.cursor()
+    con2 = mysql.connector.connect(host="localhost", user="root", password="root", database="pythonDB")
+    cursor2 = con2.cursor()
+    sqlcommand1 = "select Username from taskmanager_signup"
+    sqlcommand2 = "select Password from taskmanager_signup"
 
-        el = []
-        pl = []
+    cursor1.execute(sqlcommand1)
+    cursor2.execute(sqlcommand2)
 
-        for i in cursor1:
-            el.append(i)
+    el = []
+    pl = []
 
-        for i in cursor2:
-            pl.append(i)
+    for i in cursor1:
+        el.append(i)
 
-        res1 = list(map(itemgetter(0),el))
-        res2 = list(map(itemgetter(0),pl))
+    for i in cursor2:
+        pl.append(i)
+
+    res1 = list(map(itemgetter(0),el))
+    res2 = list(map(itemgetter(0),pl))
 
 
-        if request.method == "POST":
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-            i = 0
-            k = len(res1)
-            while i < k:
-                print(res1[i])
-                print(res2[i])
-                if res1[i] == username and res2[i] == password:
-                    return redirect('show')
-                i += 1
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        i = 0
+        k = len(res1)
+        while i < k:
+            print(res1[i])
+            print(res2[i])
+            if res1[i] == username and res2[i] == password:
+                return render(request, 'tasks.html')
+            i += 1
+        else:
+            messages.error(request, "Check username or password ")
+            return redirect('signin')
+
+    return render(request, 'authentication/signin.html')
+
+    '''
+        print(username)
+        print(password)
+        uname = Signup.objects.filter(Username=username,Password=password).exists()
+        print(uname)
+        if uname:
+            obj = Signup()
+            user = obj.authenticate(Username=username,Password=password)
+            print(user)
+            if user:4
+                login(request,user)
+                messages.success(request,"Login success!")
+                return redirect('home')
             else:
-                messages.error(request, "Check username or password ")
+                messages.error(request,"login failed!")
                 return redirect('signin')
-    else:
-        return render(request, 'authentication/signin.html')
+        else:
+            messages.error(request,"login unattempt ")
+            return redirect('signin')
+    return render(request, 'authentication/signin.html')
+    '''
 
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def signout(request):
-    messages.success(request, "You are logout!!")
-    return render(request, 'authentication/signout.html')
+    logout(request)
+    return redirect('signin')
 
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def show(request):
     #return HttpResponse("this is homepage")
     return render(request, 'tasks.html')
 
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+def display(request):
+    if request.method == "POST":
+        if request.POST.get('create'):
+           return render(request, 'create.html')
+        if request.POST.get('delete'):
+            return render(request, 'delete.html')
+        if request.POST.get('update'):
+            return render(request, 'update.html')
+        if request.POST.get('read'):
+            return render(request, 'read.html')
+
 def create(request):
     if request.method == "POST":
         if request.POST.get('create'):
@@ -129,10 +162,8 @@ def create(request):
             messages.info(request, "Task created!")
             return render(request, 'create.html')
         if request.POST.get('back'):
-            return redirect('show')
-    return render(request, 'create.html')
+            return render(request, 'tasks.html')
 
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def read(request):
     if request.method == "POST":
         if request.POST.get('show'):
@@ -149,10 +180,8 @@ def read(request):
         if request.POST.get('read'):
                 return render(request, 'readid.html')
         if request.POST.get('back'):
-            return redirect('show')
-    return render(request, 'read.html')
+            return render(request, 'tasks.html')
 
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def readid(request):
     if request.method == "POST":
         if request.POST.get('read'):
@@ -170,10 +199,8 @@ def readid(request):
                 messages.error(request, "ID not exists!")
                 return render(request, 'readid.html')
         if request.POST.get('back'):
-            return redirect('read')
-    return render(request, 'readid.html')
+            return render(request, 'read.html')
 
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def delete(request):
     if request.method == "POST":
         if request.POST.get('delete'):
@@ -195,10 +222,8 @@ def delete(request):
                 messages.info(request, "All Tasks deleted!")
             return render(request, 'delete.html')
         if request.POST.get('back'):
-            return redirect('show')
-    return render(request, 'delete.html')
+            return render(request, 'tasks.html')
 
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def update(request):
     if request.method == "POST":
         if request.POST.get('update'):
@@ -213,8 +238,7 @@ def update(request):
                 messages.error(request, "Tasks not exists!")
             return render(request, 'update.html')
         if request.POST.get('back'):
-            return redirect('show')
-    return render(request, 'update.html')
+            return render(request, 'tasks.html')
 
 
 

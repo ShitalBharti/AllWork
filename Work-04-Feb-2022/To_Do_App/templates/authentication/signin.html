@@ -16,17 +16,17 @@
                         <tr>
                             <td></td>
                             {% if messages %}
+                            {% for message in messages %}
                             <td>
-                                {% for message in messages %}
-                                    <div class="container-fluid p-0">
-                                      <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        </button>
-                                        {{ message }}
-                                      </div>
-                                    </div>
-                                {% endfor %}
+                                <div class="container-fluid p-0">
+                                  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    </button>
+                                    {{ message }}
+                                  </div>
+                                </div>
                             </td>
+                            {% endfor %}
                             {% endif %}
 
                         </tr>

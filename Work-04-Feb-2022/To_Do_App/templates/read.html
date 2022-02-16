@@ -9,7 +9,7 @@
 <body>
 <div class="row h-100 justify-content-center align-items-center">
 {% include 'messages.html' %}
-    <form method="post" class="form-container">
+    <form method="post" action="/read" class="form-container">
         {% csrf_token %}
         <table>
             <tr>

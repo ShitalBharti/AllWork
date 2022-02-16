@@ -12,17 +12,17 @@
 <div class="bg-image d-flex justify-content-center align-items-center mt-4 ml-4 mr-4 mb-10"
      style="background-image: url('{% static 'todoimage.jpg' %}');
             height: 100vh">
-    <form method="post" action="/signout">
+{% include 'messages.html' %}
+    <form method="post" action="/display">
         {% csrf_token %}
         <div class="text-center">
             <h1 class="text-success h1">Here you go!!</h1>
         </div>
         <div class="container text-center">
-            <a href="create" class="btn btn-danger btn-rounded btn-lg" role="button">Create</a>
-            <a href="read" class="btn btn-danger btn-rounded btn-lg" role="button">See Tasks</a>
-            <a href="update" class="btn btn-danger btn-rounded btn-lg" role="button">Update Tasks</a>
-            <a href="delete" class="btn btn-danger btn-rounded btn-lg" role="button">Delete Tasks</a>
-            <button type="submit" class="btn btn-info btn-lg"  name="signout">Signout</button>
+            <input type="submit" class="btn btn-danger btn-rounded btn-lg" value="Create Task" name="create">
+            <input type="submit" class="btn btn-danger btn-rounded btn-lg" value="See Tasks" name="read">
+            <input type="submit" class="btn btn-danger btn-rounded btn-lg" value="Update Tasks" name="update">
+            <input type="submit" class="btn btn-danger btn-rounded btn-lg" value="Delete Tasks" name="delete">
         </div>
     </form>
 </div>

@@ -1,7 +1,6 @@
 from django.db import models
 
 # Create your models here.
-
 class Tasks(models.Model):
     Id = models.AutoField(primary_key=True)
     TaskName = models.CharField(max_length=100)
@@ -16,10 +15,8 @@ class Signup(models.Model):
     Password = models.CharField(max_length=100)
     Confirm_Password = models.CharField(max_length=100)
 
-    # tasks = models.ManyToManyField(Tasks)
 
-
-
-
-
-
+    def authenticate(self,Username,Password):
+        self.Username = Username
+        self.Password = Password
+        return self.Username
